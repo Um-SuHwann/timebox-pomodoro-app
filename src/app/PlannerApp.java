@@ -1,13 +1,15 @@
 package app;
 
 import model.TaskDataModel;
+import ui.navigation.NavigationListener;
+import ui.navigation.NavigationPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class PlannerApp extends JFrame {
+public class PlannerApp extends JFrame implements NavigationListener {
     public PlannerApp(TaskDataModel model){
         super("XPlanner");
 
@@ -17,6 +19,9 @@ public class PlannerApp extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
+        NavigationPanel navigationPanel = new NavigationPanel(this);
+        add(navigationPanel, BorderLayout.SOUTH);
+
         //save data
         addWindowListener(new WindowAdapter() {
             @Override
@@ -24,5 +29,10 @@ public class PlannerApp extends JFrame {
 //                model.saveTasksToFile();
             }
         });
+    }
+
+    @Override
+    public void navigateTo(String viewName) {
+
     }
 }
