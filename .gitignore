@@ -12,6 +12,7 @@
 .classpath
 .settings/
 bin/
+bin/**
 out/
 build/
 target/
@@ -26,3 +27,5 @@ release.properties
 **/build/
 !gradle-wrapper.jar
 .metadata/
+*.iml
+.idea/
