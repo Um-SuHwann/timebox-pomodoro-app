@@ -41,7 +41,7 @@ public class PlannerApp extends JFrame implements NavigationListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-//                model.saveTasksToFile();
+                model.saveTasksToFile();
             }
         });
     }

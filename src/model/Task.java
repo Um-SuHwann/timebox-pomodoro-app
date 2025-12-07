@@ -12,6 +12,11 @@ public class Task {
 	}
 
 	@Override
+	public String toString() {
+		return content;
+	}
+
+	@Override
 	public int hashCode() {
 		return content.hashCode();
 	}
