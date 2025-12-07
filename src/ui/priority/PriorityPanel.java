@@ -89,6 +89,7 @@ public class PriorityPanel extends JPanel {
         Task task = priorityList.getSelectedValue();
 
         if (task != null) {
+            model.addTask(task.getContent());
             model.getPriorityModel().removeElement(task);
         } else {
             JOptionPane.showMessageDialog(this,
