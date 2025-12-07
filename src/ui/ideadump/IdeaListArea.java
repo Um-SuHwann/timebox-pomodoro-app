@@ -18,6 +18,8 @@ public class IdeaListArea extends JPanel {
         taskList = new JList<>(model.getIdeaDumpModel());
         taskList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        taskList.setDragEnabled(true);
+        taskList.setTransferHandler(new IdeaTransferHandler(model));
         add(new JScrollPane(taskList), BorderLayout.CENTER);
     }
     public Task getSelectedTask() {

@@ -3,49 +3,47 @@ package ui.priority;
 import model.Task;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class PriorityCellCustom extends JLabel implements ListCellRenderer<Task>{
+public class PriorityCellCustom extends DefaultListCellRenderer {
 
-    private static final Color RED = new Color(255, 150, 150);
-    private static final Color ORANGE = new Color(255, 195, 140);
-    private static final Color YELLOW = new Color(255, 245, 160);
-    private static final Color EMPTY_SLOT_COLOR = new Color(240, 240, 240); // Light Gray
-    private static final Color TEXT_COLOR = new Color(50, 50, 50);
-    private static final Color[] background = { RED, ORANGE, YELLOW };
-
-    public PriorityCellCustom(){
-        setOpaque(true);
-        setFont(new Font("SansSerif", Font.BOLD, 14));
-        setBorder(new EmptyBorder(10, 8, 10, 8));
-    }
+    private static final Color COLOR_1 = new Color(255, 102, 102); // Red
+    private static final Color COLOR_2 = new Color(255, 178, 102); // Orange
+    private static final Color COLOR_3 = new Color(255, 255, 102); // Yellow
+    private static final Font TASK_FONT = new Font("SansSerif", Font.BOLD, 16);
 
     @Override
-    public Component getListCellRendererComponent(
-            JList<? extends Task> list,
-            Task task,
-            int index,
-            boolean isSelected,
-            boolean cellHasFocus
-    ) {
-        //number
-        String prefix = (index + 1) + ". ";
+    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        if(task != null){
-            setText(prefix + task.getContent());
-            setBackground(background[index]);
-            setForeground(Color.WHITE);
+        setFont(TASK_FONT);
+        setForeground(new Color(10,10,10));
+
+        String text;
+        if (value instanceof Task) {
+            text = " " + (index + 1) + ". " + ((Task) value).getContent();
         } else {
-            setText(prefix + "(Empty)");
-            setBackground(EMPTY_SLOT_COLOR);
-            setForeground(TEXT_COLOR);
+            text = " " + (index + 1) + ". ---";
+        }
+        setText(text);
+
+        switch (index) {
+            case 0:
+                setBackground(COLOR_1);
+                break;
+            case 1:
+                setBackground(COLOR_2);
+                break;
+            case 2:
+                setBackground(COLOR_3);
+                break;
+            default:
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
         }
 
-        if(isSelected){
-            setBackground(list.getSelectionBackground());
-            setForeground(list.getSelectionForeground());
-        }
+        setPreferredSize(new Dimension(getPreferredSize().width, 40));
+
         return this;
     }
 }

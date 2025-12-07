@@ -66,7 +66,7 @@ public class TaskDataModel {
         }
     }
 
-    public void moveToPriority(Task task) {
+    public void addPriorityTask(Task task) {
         if (task == null) return;
         if (!priorityModel.contains(task)) {
             priorityModel.addElement(task);
