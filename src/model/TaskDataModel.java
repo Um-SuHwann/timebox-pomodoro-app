@@ -135,7 +135,6 @@ public class TaskDataModel {
 
                 Task loadedTask = null;
                 if (!line.equals("---EMPTY---")) {
-                    // Restore Task object from saved string content
                     loadedTask = new Task(line);
                 }
 

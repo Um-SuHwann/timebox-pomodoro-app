@@ -27,6 +27,11 @@ public class PriorityPanel extends JPanel {
         priorityList = new JList<>(model.getPriorityModel());
         priorityList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        priorityList.setFixedCellHeight(40);
+        priorityList.setVisibleRowCount(3);
+        //custom
+        priorityList.setCellRenderer(new PriorityCellCustom());
+
         add(new JScrollPane(priorityList), BorderLayout.CENTER);
     }
 
