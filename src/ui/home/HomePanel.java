@@ -3,6 +3,7 @@ package ui.home;
 import model.TaskDataModel;
 import ui.ideadump.IdeaDumpPanel;
 import ui.priority.PriorityPanel;
+import ui.timebox.TimeBoxPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,17 +14,20 @@ public class HomePanel extends JPanel {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10));
 
+        // Left side components
         IdeaDumpPanel ideaDumpPanel = new IdeaDumpPanel(model);
         PriorityPanel priorityPanel = new PriorityPanel(model, ideaDumpPanel);
-
         JPanel leftContainer = createTaskAndPriorityContainer(ideaDumpPanel, priorityPanel);
-        JPanel mm = new JPanel();
+
+        // Right side component
+        TimeBoxPanel timeBoxPanel = new TimeBoxPanel(model);
+
         JSplitPane splitPane = new JSplitPane(
                 JSplitPane.HORIZONTAL_SPLIT,
                 leftContainer,
-                mm
+                timeBoxPanel
         );
-        splitPane.setResizeWeight(0.5);
+        splitPane.setResizeWeight(0.3);
         SwingUtilities.invokeLater(() -> {
             splitPane.setDividerLocation(0.3);
         });

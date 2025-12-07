@@ -34,12 +34,21 @@ public class PriorityPanel extends JPanel {
     private void setupTaskListArea(){
         priorityList = new JList<>(priorityViewModel); // Use the view model
         priorityList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        priorityList.setTransferHandler(new IdeaTransferHandler(model)); // Set the handler
+        priorityList.setDragEnabled(true); // Enable dragging from this list
+        priorityList.setTransferHandler(new PriorityListTransferHandler(model)); // Set the new handler
 
-        priorityList.setFixedCellHeight(40);
         priorityList.setCellRenderer(new PriorityCellCustom());
+        priorityList.setFixedCellHeight(40); // Set fixed height for each cell
 
-        add(new JScrollPane(priorityList), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(priorityList);
+
+        // To fix the height of the JScrollPane to 120px (3 items * 40px),
+        // we place it inside another panel with a BorderLayout and add the scroll pane to the NORTH.
+        // The NORTH region of a BorderLayout respects the component's preferred height.
+        JPanel listContainer = new JPanel(new BorderLayout());
+        listContainer.add(scrollPane, BorderLayout.NORTH);
+
+        add(listContainer, BorderLayout.CENTER);
     }
 
     private void addModelListeners() {

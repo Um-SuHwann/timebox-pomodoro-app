@@ -10,7 +10,7 @@ public class TaskDataModel {
     private static final String TASKS_FILE_NAME = "tasks.txt";
 
     private static final String TASKS_FILE_PATH = DATA_FOLDER + "/" + TASKS_FILE_NAME;
-    private final int TOTAL_TIME_SLOTS = 18;
+    private final int TOTAL_TIME_SLOTS = 38; // 5:00 ~ 24:00 (19 hours * 2 slots/hour)
 
     private final DefaultListModel<Task> ideaDumpModel;
     private final DefaultListModel<Task> priorityModel;
